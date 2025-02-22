@@ -16,7 +16,7 @@ dependencies:
   url_launcher: ^6.3.1
   # Enables In App Updates on Android using the official Android APIs.
   in_app_update: ^4.2.3
-  dio: ^5.8.0+1
+  # Get app name
   package_info_plus: ^8.2.1
   # extras
   fluttertoast: ^8.2.12
