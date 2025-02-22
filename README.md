@@ -1,9 +1,5 @@
 # native_updater
 
-[![pub package](https://img.shields.io/pub/v/native_updater.svg)](https://pub.dev/packages/native_updater)
-
-> Flutter package for prompting users to update with a native dialog whether using the app store version or any version at the user's discretion.
-
 When a latest app version is available via user defined logic, a simple alert prompt widget is displayed. With today's modern app stores, there is little need to persuade users to update because most of them are already using the auto update feature. However, there may be times when an app needs to be updated more quickly than usual, and nagging a user to update will entice the update sooner.
 
 The UI comes in two flavors: Material Design for Android and Cupertino for iOS. The [UpdateMaterialAlert](#material-alert-example) widget is used to display the native Android alert prompt, and the [UpdateCupertinoAlert](#cupertino-alert-example) widget is used to display the native iOS alert prompt.
@@ -12,13 +8,9 @@ The UI comes in two flavors: Material Design for Android and Cupertino for iOS. 
 
 ```yaml
 dependencies:
-  flutter:
-    sdk: flutter
-  cupertino_icons: ^0.1.3
-
   # Add this inside pubspec.yaml
   native_updater:
-    git: https://github.com/loadsmileau/native_updater
+    git: https://github.com/KimVinod/native_updater
 ```
 
 ## Setup
