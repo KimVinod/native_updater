@@ -1,11 +1,10 @@
 import 'dart:developer' as developer;
 import 'dart:io';
-
+import 'package:fluttertoast/fluttertoast.dart' as FT;
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:in_app_update/in_app_update.dart';
-import 'package:package_info/package_info.dart';
-
 import 'error_material_alert.dart';
 import 'update_cupertino_alert.dart';
 
@@ -112,11 +111,22 @@ class NativeUpdater {
       if (_updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
         if (_forceUpdate == true) {
           InAppUpdate.performImmediateUpdate()
-              .catchError((e) => developer.log(e.toString()));
+              .catchError((e) {
+                developer.log(e.toString());
+                return Future<AppUpdateResult>.error(e.toString());
+              });
         } else if (_forceUpdate == false) {
           InAppUpdate.startFlexibleUpdate()
-              .catchError((e) => developer.log(e.toString()));
+              .catchError((e) {
+                developer.log(e.toString());
+                return Future<AppUpdateResult>.error(e.toString());
+              });
         }
+      } else if(_updateInfo.updateAvailability == UpdateAvailability.updateNotAvailable) {
+        FT.Fluttertoast.showToast(
+          msg: "You are already using the latest version",
+          toastLength: FT.Toast.LENGTH_SHORT,
+        );
       }
     } on PlatformException catch (e) {
       developer.log(e.code.toString());
@@ -126,9 +136,8 @@ class NativeUpdater {
         builder: (BuildContext context) {
           return ErrorMaterialAlert(
             appName: _appName,
-            description:
-                _errorText ?? 'This version of $_appName was not installed from Google Play Store.',
-            errorCloseButtonLabel:_errorCloseButtonLabel,
+            description: _errorText ?? 'This version of $_appName was not installed from Google Play Store.',
+            errorCloseButtonLabel: _errorCloseButtonLabel,
             errorSubtitle: _errorSubtitle,
           );
         },
