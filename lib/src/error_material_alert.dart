@@ -6,7 +6,8 @@ class ErrorMaterialAlert extends StatelessWidget {
   final String? errorCloseButtonLabel;
   final String? errorSubtitle;
 
-  ErrorMaterialAlert({
+  const ErrorMaterialAlert({
+    super.key,
     required this.appName,
     required this.description,
     this.errorCloseButtonLabel,
@@ -20,9 +21,9 @@ class ErrorMaterialAlert extends StatelessWidget {
     );
 
     Widget closeButton = TextButton(
-      child: Text(errorCloseButtonLabel ?? 'CLOSE', style: TextStyle(color: Colors.white)),
       onPressed: () => Navigator.pop(context),
       style: flatButtonStyle,
+      child: Text(errorCloseButtonLabel ?? 'CLOSE', style: TextStyle(color: Colors.white)),
     );
 
     return AlertDialog(

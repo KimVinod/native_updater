@@ -1,3 +1,3 @@
-library native_updater;
+library;
 
 export 'src/native_updater.dart';

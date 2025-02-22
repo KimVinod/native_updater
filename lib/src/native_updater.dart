@@ -1,6 +1,6 @@
 import 'dart:developer' as developer;
 import 'dart:io';
-import 'package:fluttertoast/fluttertoast.dart' as FT;
+import 'package:fluttertoast/fluttertoast.dart' as flutter_toast;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -106,9 +106,9 @@ class NativeUpdater {
   void _showMaterialAlertDialog() async {
     /// In App Update Related
     try {
-      AppUpdateInfo _updateInfo = await InAppUpdate.checkForUpdate();
+      AppUpdateInfo updateInfo = await InAppUpdate.checkForUpdate();
 
-      if (_updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
+      if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
         if (_forceUpdate == true) {
           InAppUpdate.performImmediateUpdate()
               .catchError((e) {
@@ -122,10 +122,10 @@ class NativeUpdater {
                 return Future<AppUpdateResult>.error(e.toString());
               });
         }
-      } else if(_updateInfo.updateAvailability == UpdateAvailability.updateNotAvailable) {
-        FT.Fluttertoast.showToast(
-          msg: "You are already using the latest version",
-          toastLength: FT.Toast.LENGTH_SHORT,
+      } else if(updateInfo.updateAvailability == UpdateAvailability.updateNotAvailable) {
+        flutter_toast.Fluttertoast.showToast(
+          msg: "You are using the latest version",
+          toastLength: flutter_toast.Toast.LENGTH_SHORT,
         );
       }
     } on PlatformException catch (e) {

@@ -12,7 +12,8 @@ class UpdateCupertinoAlert extends StatelessWidget {
   final String ignoreButtonLabel;
   final String alertTitle;
 
-  UpdateCupertinoAlert({
+  const UpdateCupertinoAlert({
+    super.key,
     required this.forceUpdate,
     required this.appName,
     required this.appStoreUrl,

@@ -14,7 +14,8 @@ class UpdateMaterialAlert extends StatelessWidget {
   final String ignoreButtonLabel;
   final String newVersionLabel;
 
-  UpdateMaterialAlert({
+  const UpdateMaterialAlert({
+    super.key,
     required this.forceUpdate,
     required this.appName,
     required this.playStoreUrl,
@@ -44,10 +45,10 @@ class UpdateMaterialAlert extends StatelessWidget {
     );
 
     Widget updateButton = TextButton(
-      child: Text(updateButtonLabel.toUpperCase(),
-          style: TextStyle(color: Colors.white)),
       style: flatButtonStyle,
       onPressed: () => launchUrlString(playStoreUrl),
+      child: Text(updateButtonLabel.toUpperCase(),
+          style: TextStyle(color: Colors.white)),
     );
 
     return AlertDialog(
