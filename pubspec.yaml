@@ -17,7 +17,7 @@ dependencies:
   # Enables In App Updates on Android using the official Android APIs.
   in_app_update: ^4.2.3
   # Get app name
-  package_info_plus: ^8.2.1
+  package_info_plus: ^8.3.0
   # extras
   fluttertoast: ^8.2.12
 
