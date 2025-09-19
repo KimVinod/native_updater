@@ -30,7 +30,7 @@ class NativeUpdater {
   NativeUpdater._internal();
 
   /// Displaying update alert
-  static displayUpdateAlert(
+  static Future<void> displayUpdateAlert(
     BuildContext context, {
     required bool forceUpdate,
     String? appStoreUrl,
@@ -130,7 +130,7 @@ class NativeUpdater {
       }
     } on PlatformException catch (e) {
       developer.log(e.code.toString());
-
+      if(!_context.mounted) return;
       showDialog(
         context: _context,
         builder: (BuildContext context) {
