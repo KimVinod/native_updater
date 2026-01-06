@@ -19,7 +19,7 @@ dependencies:
   # Get app name
   package_info_plus: ^9.0.0
   # extras
-  fluttertoast: ^8.2.14
+  fluttertoast: ^9.0.0
 
 dev_dependencies:
   flutter_test:
