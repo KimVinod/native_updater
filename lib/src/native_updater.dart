@@ -13,6 +13,7 @@ class NativeUpdater {
   late bool _forceUpdate;
   late String _appName;
   String? _appStoreUrl;
+  String? _playStoreUrl;
   String? _iOSDescription;
   String? _iOSUpdateButtonLabel;
   String? _iOSCloseButtonLabel;
@@ -34,6 +35,7 @@ class NativeUpdater {
     BuildContext context, {
     required bool forceUpdate,
     String? appStoreUrl,
+    String? playStoreUrl,
     String? iOSDescription,
     String? iOSUpdateButtonLabel,
     String? iOSCloseButtonLabel,
@@ -53,6 +55,7 @@ class NativeUpdater {
     _nativeUpdaterInstance._forceUpdate = forceUpdate;
     _nativeUpdaterInstance._appName = info.appName;
     _nativeUpdaterInstance._appStoreUrl = appStoreUrl;
+    _nativeUpdaterInstance._playStoreUrl = playStoreUrl;
     _nativeUpdaterInstance._iOSDescription = iOSDescription;
     _nativeUpdaterInstance._iOSUpdateButtonLabel = iOSUpdateButtonLabel;
     _nativeUpdaterInstance._iOSCloseButtonLabel = iOSCloseButtonLabel;
@@ -137,6 +140,7 @@ class NativeUpdater {
           return ErrorMaterialAlert(
             appName: _appName,
             description: _errorText ?? 'This version of $_appName was not installed from Google Play Store.',
+            playStoreUrl: _playStoreUrl,
             errorCloseButtonLabel: _errorCloseButtonLabel,
             errorSubtitle: _errorSubtitle,
           );

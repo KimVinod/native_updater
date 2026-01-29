@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart' as flutter_toast;
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ErrorMaterialAlert extends StatelessWidget {
   final String appName;
   final String description;
+  final String? playStoreUrl;
   final String? errorCloseButtonLabel;
   final String? errorSubtitle;
 
@@ -10,20 +13,33 @@ class ErrorMaterialAlert extends StatelessWidget {
     super.key,
     required this.appName,
     required this.description,
+    this.playStoreUrl,
     this.errorCloseButtonLabel,
     this.errorSubtitle,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle flatButtonStyle = TextButton.styleFrom(
-      backgroundColor: Colors.green,
-    );
-
     Widget closeButton = TextButton(
       onPressed: () => Navigator.pop(context),
-      style: flatButtonStyle,
-      child: Text(errorCloseButtonLabel ?? 'CLOSE', style: TextStyle(color: Colors.white)),
+      child: Text(errorCloseButtonLabel ?? 'CLOSE'),
+    );
+
+    Widget openButton = TextButton(
+      onPressed: () async {
+        Navigator.pop(context);
+        if(playStoreUrl == null) return;
+
+        if(await canLaunchUrlString(playStoreUrl!)) {
+          launchUrlString(playStoreUrl!, mode: LaunchMode.externalApplication);
+        } else {
+          flutter_toast.Fluttertoast.showToast(
+            msg: "Error occurred. Your phone doesn't support opening links",
+            toastLength: flutter_toast.Toast.LENGTH_SHORT,
+          );
+        }
+      },
+      child: Text(errorCloseButtonLabel ?? 'Open Play Store'),
     );
 
     return AlertDialog(
@@ -39,6 +55,7 @@ class ErrorMaterialAlert extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              if(playStoreUrl?.isNotEmpty == true) openButton,
               closeButton,
             ],
           ),
