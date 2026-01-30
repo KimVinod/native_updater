@@ -22,7 +22,7 @@ class ErrorMaterialAlert extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget closeButton = TextButton(
       onPressed: () => Navigator.pop(context),
-      child: Text(errorCloseButtonLabel ?? 'CLOSE'),
+      child: Text(errorCloseButtonLabel ?? 'Close'),
     );
 
     Widget openButton = TextButton(
